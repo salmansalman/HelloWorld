@@ -1,0 +1,8 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f7fbff"/>
+  <circle cx="400" cy="250" r="180" fill="#ffffff" stroke="#d6e2ea" stroke-width="4"/>
+  <path d="M220 210l-40 40h40l-40 40" stroke="#f0c67c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M580 220l40 40h-40l40 40" stroke="#f0c67c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M400 120l18 40h-18l18 40" stroke="#f0c67c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="460" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#516472">Flashes can look like brief lightning streaks</text>
+</svg>
