@@ -249,6 +249,12 @@ a {
   font-size: 1.05rem;
 }
 
+.hero-note {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: var(--blue-700);
+}
+
 .hero-actions {
   margin-top: 28px;
   display: flex;
