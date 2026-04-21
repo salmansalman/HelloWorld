@@ -13,6 +13,7 @@ document.body.appendChild(transitionLayer);
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const HOME_PATHS = new Set(["/", "/index.html"]);
+const INTRO_SKIP_PARAM = "_intro";
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");
@@ -57,9 +58,7 @@ document.addEventListener("click", (event) => {
   }
 
   if (HOME_PATHS.has(nextUrl.pathname)) {
-    sessionStorage.setItem("skip-home-intro-once", "1");
-  } else {
-    sessionStorage.removeItem("skip-home-intro-once");
+    nextUrl.searchParams.set(INTRO_SKIP_PARAM, "0");
   }
 
   event.preventDefault();
@@ -121,6 +120,8 @@ if ("IntersectionObserver" in window && !prefersReducedMotion) {
 }
 
 const isHomePage = HOME_PATHS.has(window.location.pathname);
+const currentUrl = new URL(window.location.href);
+const skipHomeIntro = currentUrl.searchParams.get(INTRO_SKIP_PARAM) === "0";
 
 const navigationEntries = performance.getEntriesByType("navigation");
 const navigationType =
@@ -130,30 +131,19 @@ const navigationType =
       ? "reload"
       : "navigate";
 
-const skipHomeIntro = sessionStorage.getItem("skip-home-intro-once") === "1";
-let internalReferrerToHome = false;
-
-if (document.referrer) {
-  try {
-    const referrerUrl = new URL(document.referrer);
-    internalReferrerToHome =
-      referrerUrl.origin === window.location.origin &&
-      (referrerUrl.pathname !== window.location.pathname ||
-        referrerUrl.search !== window.location.search);
-  } catch (_) {
-    internalReferrerToHome = false;
-  }
-}
-
-if (skipHomeIntro) {
-  sessionStorage.removeItem("skip-home-intro-once");
+if (isHomePage && skipHomeIntro) {
+  currentUrl.searchParams.delete(INTRO_SKIP_PARAM);
+  const cleanedPath =
+    currentUrl.pathname +
+    (currentUrl.searchParams.toString() ? `?${currentUrl.searchParams.toString()}` : "") +
+    currentUrl.hash;
+  window.history.replaceState({}, "", cleanedPath);
 }
 
 if (
   isHomePage &&
   !prefersReducedMotion &&
   !skipHomeIntro &&
-  !internalReferrerToHome &&
   (navigationType === "reload" || navigationType === "navigate")
 ) {
   const intro = document.createElement("div");
