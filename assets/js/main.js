@@ -14,14 +14,73 @@ document.body.appendChild(transitionLayer);
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const HOME_PATHS = new Set(["/", "/index.html"]);
 const INTRO_SKIP_PARAM = "_intro";
-const isChromiumBrowser =
-  typeof navigator !== "undefined" &&
-  /Chrome|CriOS|Edg|OPR|Brave/i.test(navigator.userAgent) &&
-  !/Firefox|FxiOS/i.test(navigator.userAgent);
+const connection =
+  navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
 
-if (isChromiumBrowser) {
-  document.documentElement.classList.add("is-chromium");
+function shouldUseLiteMotionByHints() {
+  if (prefersReducedMotion) {
+    return true;
+  }
+
+  if (connection && connection.saveData) {
+    return true;
+  }
+
+  if (typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4) {
+    return true;
+  }
+
+  if (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4) {
+    return true;
+  }
+
+  return false;
 }
+
+function measureFramePacing(sampleCount = 12) {
+  return new Promise((resolve) => {
+    if (typeof window.requestAnimationFrame !== "function") {
+      resolve(false);
+      return;
+    }
+
+    const deltas = [];
+    let previousTime = null;
+
+    const step = (timestamp) => {
+      if (previousTime !== null) {
+        deltas.push(timestamp - previousTime);
+      }
+
+      previousTime = timestamp;
+
+      if (deltas.length >= sampleCount) {
+        const averageDelta = deltas.reduce((sum, value) => sum + value, 0) / deltas.length;
+        const slowFrames = deltas.filter((value) => value > 24).length;
+        resolve(averageDelta > 19.5 || slowFrames >= 3);
+        return;
+      }
+
+      window.requestAnimationFrame(step);
+    };
+
+    window.requestAnimationFrame(step);
+  });
+}
+
+const liteMotionPromise = (async () => {
+  if (shouldUseLiteMotionByHints()) {
+    return true;
+  }
+
+  return measureFramePacing();
+})();
+
+liteMotionPromise.then((useLiteMotion) => {
+  if (useLiteMotion) {
+    document.documentElement.classList.add("is-lite-motion");
+  }
+});
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");
@@ -148,12 +207,16 @@ if (isHomePage && skipHomeIntro) {
   window.history.replaceState({}, "", cleanedPath);
 }
 
-if (
-  isHomePage &&
-  !prefersReducedMotion &&
-  !skipHomeIntro &&
-  (navigationType === "reload" || navigationType === "navigate")
-) {
+liteMotionPromise.then(() => {
+  if (
+    !isHomePage ||
+    prefersReducedMotion ||
+    skipHomeIntro ||
+    (navigationType !== "reload" && navigationType !== "navigate")
+  ) {
+    return;
+  }
+
   const intro = document.createElement("div");
   intro.className = "site-intro";
   intro.setAttribute("aria-hidden", "true");
@@ -179,4 +242,4 @@ if (
   window.setTimeout(() => {
     intro.remove();
   }, 5300);
-}
+});
