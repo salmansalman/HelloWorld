@@ -14,6 +14,14 @@ document.body.appendChild(transitionLayer);
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const HOME_PATHS = new Set(["/", "/index.html"]);
 const INTRO_SKIP_PARAM = "_intro";
+const isChromiumBrowser =
+  typeof navigator !== "undefined" &&
+  /Chrome|CriOS|Edg|OPR|Brave/i.test(navigator.userAgent) &&
+  !/Firefox|FxiOS/i.test(navigator.userAgent);
+
+if (isChromiumBrowser) {
+  document.documentElement.classList.add("is-chromium");
+}
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");
