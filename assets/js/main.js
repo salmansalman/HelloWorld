@@ -16,6 +16,14 @@ const HOME_PATHS = new Set(["/", "/index.html"]);
 const INTRO_SKIP_PARAM = "_intro";
 const connection =
   navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+const isSafariBrowser =
+  typeof navigator !== "undefined" &&
+  /Safari/i.test(navigator.userAgent) &&
+  !/Chrome|CriOS|Chromium|Edg|OPR|Firefox|FxiOS|Android/i.test(navigator.userAgent);
+
+if (isSafariBrowser) {
+  document.documentElement.classList.add("is-safari");
+}
 
 function shouldUseLiteMotionByHints() {
   if (prefersReducedMotion) {
@@ -69,6 +77,14 @@ function measureFramePacing(sampleCount = 12) {
 }
 
 const liteMotionPromise = (async () => {
+  if (prefersReducedMotion) {
+    return true;
+  }
+
+  if (isSafariBrowser) {
+    return false;
+  }
+
   if (shouldUseLiteMotionByHints()) {
     return true;
   }
