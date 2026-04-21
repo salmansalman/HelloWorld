@@ -373,12 +373,16 @@ textarea:focus-visible {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 12px 22px;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 600;
   font-size: 0.95rem;
+  text-align: center;
+  inline-size: fit-content;
+  max-inline-size: 100%;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1478,10 +1482,15 @@ body.page-leaving .page-transition {
 
   .hero-actions {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .hero-badge {
     font-size: 0.8rem;
+  }
+
+  .hero-actions .btn {
+    align-self: flex-start;
   }
 
   .blog-feature-copy {

@@ -12,6 +12,7 @@ transitionLayer.className = "page-transition";
 document.body.appendChild(transitionLayer);
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const HOME_PATHS = new Set(["/", "/index.html"]);
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");
@@ -53,6 +54,12 @@ document.addEventListener("click", (event) => {
 
   if (nextUrl.pathname === window.location.pathname && nextUrl.hash) {
     return;
+  }
+
+  if (HOME_PATHS.has(nextUrl.pathname)) {
+    sessionStorage.setItem("skip-home-intro-once", "1");
+  } else {
+    sessionStorage.removeItem("skip-home-intro-once");
   }
 
   event.preventDefault();
@@ -113,9 +120,7 @@ if ("IntersectionObserver" in window && !prefersReducedMotion) {
   });
 }
 
-const isHomePage =
-  window.location.pathname === "/" ||
-  window.location.pathname === "/index.html";
+const isHomePage = HOME_PATHS.has(window.location.pathname);
 
 const navigationEntries = performance.getEntriesByType("navigation");
 const navigationType =
@@ -125,7 +130,18 @@ const navigationType =
       ? "reload"
       : "navigate";
 
-if (isHomePage && !prefersReducedMotion && navigationType === "reload") {
+const skipHomeIntro = sessionStorage.getItem("skip-home-intro-once") === "1";
+
+if (skipHomeIntro) {
+  sessionStorage.removeItem("skip-home-intro-once");
+}
+
+if (
+  isHomePage &&
+  !prefersReducedMotion &&
+  !skipHomeIntro &&
+  (navigationType === "reload" || navigationType === "navigate")
+) {
   const intro = document.createElement("div");
   intro.className = "site-intro";
   intro.setAttribute("aria-hidden", "true");
