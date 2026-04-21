@@ -131,6 +131,19 @@ const navigationType =
       : "navigate";
 
 const skipHomeIntro = sessionStorage.getItem("skip-home-intro-once") === "1";
+let internalReferrerToHome = false;
+
+if (document.referrer) {
+  try {
+    const referrerUrl = new URL(document.referrer);
+    internalReferrerToHome =
+      referrerUrl.origin === window.location.origin &&
+      (referrerUrl.pathname !== window.location.pathname ||
+        referrerUrl.search !== window.location.search);
+  } catch (_) {
+    internalReferrerToHome = false;
+  }
+}
 
 if (skipHomeIntro) {
   sessionStorage.removeItem("skip-home-intro-once");
@@ -140,6 +153,7 @@ if (
   isHomePage &&
   !prefersReducedMotion &&
   !skipHomeIntro &&
+  !internalReferrerToHome &&
   (navigationType === "reload" || navigationType === "navigate")
 ) {
   const intro = document.createElement("div");
