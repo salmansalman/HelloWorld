@@ -1482,7 +1482,7 @@ body.page-leaving .page-transition {
 
   .hero-actions {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .hero-badge {
@@ -1490,7 +1490,12 @@ body.page-leaving .page-transition {
   }
 
   .hero-actions .btn {
-    align-self: flex-start;
+    align-self: center;
+  }
+
+  main .btn {
+    display: flex;
+    margin-inline: auto;
   }
 
   .blog-feature-copy {
