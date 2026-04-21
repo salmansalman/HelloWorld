@@ -1,0 +1,17 @@
+{
+  "name": "Ali R. Salman, MD",
+  "short_name": "Dr Salman Retina",
+  "description": "Medical and surgical retina care for Northern Virginia, Southern Maryland, and Washington, D.C.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f2a3a",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

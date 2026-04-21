@@ -9,7 +9,42 @@
   <meta property="og:description" content="Ali R. Salman, MD is a retina specialist serving Northern Virginia, Southern Maryland, and Washington, D.C. Learn about retina conditions, surgery, and secure patient inquiries." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dralisalman.com/" />
+  <link rel="canonical" href="https://dralisalman.com/" />
+  <meta name="theme-color" content="#0f2a3a" />
+  <meta name="color-scheme" content="light" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Physician",
+      "name": "Ali R. Salman, MD",
+      "url": "https://dralisalman.com/",
+      "image": "https://dralisalman.com/photos/aloosh%20portrait%20edited.png",
+      "email": "info@dralisalman.com",
+      "medicalSpecialty": ["Ophthalmology"],
+      "description": "Board-certified ophthalmologist and fellowship-trained vitreoretinal surgeon serving Northern Virginia, Southern Maryland, and Washington, D.C.",
+      "areaServed": [
+        "Northern Virginia",
+        "Southern Maryland",
+        "Washington, D.C."
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Mayo Clinic"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Retina Consultants of Minnesota"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Virginia Commonwealth University School of Medicine"
+        }
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -55,18 +90,8 @@
             <a href="/epiretinal-membrane/">Epiretinal Membrane</a>
           </div>
         </div>
-        <div class="dropdown">
-          <a class="dropdown-toggle" href="/contact/">For Patients</a>
-          <div class="dropdown-menu">
-            <a href="/contact/">Contact Us</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <a class="dropdown-toggle" href="/refer-a-patient/">For Referring Doctors</a>
-          <div class="dropdown-menu">
-            <a href="/refer-a-patient/">Refer a Patient Online</a>
-          </div>
-        </div>
+        <a href="/contact/">For Patients</a>
+        <a href="/refer-a-patient/">For Referring Doctors</a>
         <a href="/blog/">Blog</a>
         <a class="nav-cta" href="/contact/">Contact/Inquire</a>
       </nav>
@@ -78,10 +103,20 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Retina and Vitreous Care</div>
-          <h1>Compassionate retina care with precision and clarity.</h1>
+          <h1>Fellowship-trained surgical retina care with clear guidance at every step.</h1>
+          <p class="hero-lead">
+            Ali R. Salman, MD is a board-certified, Mayo Clinic-trained ophthalmologist and fellowship-trained
+            vitreoretinal surgeon serving Northern Virginia, Southern Maryland, and Washington, D.C.
+          </p>
+          <div class="hero-badges">
+            <div class="hero-badge">Mayo Clinic-trained</div>
+            <div class="hero-badge">Board-certified</div>
+            <div class="hero-badge">Fellowship-trained retina surgeon</div>
+          </div>
           <p>
-            Ali R. Salman, MD provides comprehensive evaluation and surgical treatment for retinal conditions.
-            Patients benefit from attentive care, advanced imaging, and a commitment to protecting vision.
+            Dr. Salman provides comprehensive evaluation and treatment for macular disease, diabetic retinopathy,
+            retinal detachment, vascular retinal disease, and other complex vitreoretinal conditions using advanced
+            imaging and modern surgical techniques.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="/contact/">Open Secure Inquiry</a>
@@ -98,13 +133,13 @@
               Vitreoretinal surgeon
             </div>
             <div class="stat">
-              <span>24/7</span>
-              On-call retinal care
+              <span>16+</span>
+              Publications, chapters, and manuscripts
             </div>
           </div>
         </div>
         <div class="hero-card">
-          <img src="photos/aloosh portrait edited.png" alt="Portrait of Dr. Ali R. Salman" />
+          <img fetchpriority="high" decoding="async" src="photos/aloosh portrait edited.png" alt="Portrait of Dr. Ali R. Salman" />
         </div>
       </div>
     </section>
@@ -129,7 +164,38 @@
           </div>
         </div>
         <div>
-          <img class="home-surgery-photo" src="photos/Alooshsurgery.jpeg" alt="Retina surgery procedure" />
+          <img class="home-surgery-photo" loading="lazy" decoding="async" src="photos/Alooshsurgery.jpeg" alt="Retina surgery procedure" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt cred-section">
+      <div class="container">
+        <div class="eyebrow">Credentials At A Glance</div>
+        <h2>Training, scholarship, and service that support clinical judgment.</h2>
+        <div class="cred-grid" style="margin-top: 24px;">
+          <div class="cred-card">
+            <div class="cred-kicker">Training</div>
+            <h3>Mayo-trained ophthalmology</h3>
+            <p>Residency training at <span class="cred-metric-inline">Mayo Clinic</span> followed by vitreoretinal fellowship training at Retina Consultants of Minnesota.</p>
+          </div>
+          <div class="cred-card">
+            <div class="cred-metric">16+</div>
+            <div class="cred-kicker">Publications</div>
+            <h3>Published clinical scholarship</h3>
+            <p>Author or co-author of 16 peer-reviewed articles, chapters, and professional manuscripts across retina, ophthalmology, and related medical research.</p>
+          </div>
+          <div class="cred-card">
+            <div class="cred-kicker">Academic Service</div>
+            <h3>Invited journal reviewer</h3>
+            <p>Invited reviewer for <span class="cred-metric-inline">multiple retina and ophthalmology journals</span>, with ongoing academic interest in surgical outcomes and retinal imaging.</p>
+          </div>
+          <div class="cred-card">
+            <div class="cred-metric">10+</div>
+            <div class="cred-kicker">Years of service</div>
+            <h3>Longstanding humanitarian work</h3>
+            <p>More than a decade of work with United2Heal helping send medical supplies to countries and regions in need around the world.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -190,19 +256,20 @@
     <section class="section">
       <div class="container split">
         <div>
-          <img src="assets/img/home/ophthalmology-equipment.jpg" alt="Ophthalmic examination equipment in a clinic setting" />
+          <img loading="lazy" decoding="async" src="assets/img/home/ophthalmology-equipment.jpg" alt="Ophthalmic examination equipment in a clinic setting" />
         </div>
         <div>
           <div class="eyebrow">Why Patients Choose Us</div>
-          <h2>Personalized care supported by advanced technology.</h2>
+          <h2>Technical retina care delivered with direct communication.</h2>
           <p>
-            Every visit includes detailed imaging, a clear explanation of findings, and a tailored treatment plan.
-            Our team coordinates closely with referring physicians to keep care seamless.
+            Each visit is built around detailed imaging review, careful discussion of findings, and a treatment plan
+            that is specific to disease stage, symptoms, and surgical urgency. Referring doctors receive coordinated
+            communication to keep care efficient and clinically aligned.
           </p>
           <div class="info-list">
-            <div class="info-item">State-of-the-art retinal imaging and diagnostics.</div>
-            <div class="info-item">Surgical expertise for complex retina conditions.</div>
-            <div class="info-item">Friendly staff dedicated to making your visit easy.</div>
+            <div class="info-item">State-of-the-art retinal imaging, OCT, and disease monitoring.</div>
+            <div class="info-item">Medical and surgical management for urgent and complex retina pathology.</div>
+            <div class="info-item">Clear explanations of findings, treatment choices, and postoperative expectations.</div>
           </div>
         </div>
       </div>
@@ -214,7 +281,7 @@
         <h2>What our patients say.</h2>
         <div class="testimonials" style="margin-top: 24px;">
           <div class="quote">
-            “Dr. Salman was very patient with me as I had many concurent issues yet he took the time to explain everything in detail and answered all of my questions. As such, I felt confident moving forward with treatment.”
+            “Dr. Salman was very patient with me as I had many concurrent issues, yet he took the time to explain everything in detail and answered all of my questions. As such, I felt confident moving forward with treatment.”
             <div><strong>- R.S.</strong></div>
           </div>
           <div class="quote">
