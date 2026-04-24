@@ -151,6 +151,10 @@ textarea:focus-visible {
   font-size: 0.95rem;
 }
 
+.nav-hidden-temporary {
+  display: none !important;
+}
+
 .nav-links a {
   color: var(--blue-800);
   font-weight: 500;
@@ -574,6 +578,14 @@ textarea:focus-visible {
   background:
     radial-gradient(circle at top left, rgba(183, 220, 239, 0.55), transparent 34%),
     linear-gradient(180deg, #eaf5fb 0%, #f6fbfe 100%);
+}
+
+.conditions-featured {
+  padding-bottom: 34px;
+}
+
+.conditions-additional {
+  padding-top: 18px;
 }
 
 .section h2 {

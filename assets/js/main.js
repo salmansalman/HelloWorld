@@ -140,10 +140,6 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  if (HOME_PATHS.has(nextUrl.pathname)) {
-    nextUrl.searchParams.set(INTRO_SKIP_PARAM, "0");
-  }
-
   event.preventDefault();
   document.body.classList.add("page-leaving");
 
@@ -253,9 +249,9 @@ liteMotionPromise.then(() => {
 
   window.setTimeout(() => {
     intro.classList.add("is-hidden");
-  }, 2200);
+  }, 3200);
 
   window.setTimeout(() => {
     intro.remove();
-  }, 5300);
+  }, 6300);
 });
